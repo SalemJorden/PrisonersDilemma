@@ -1,11 +1,15 @@
 import React from 'react';
 import PrisonersDilemmaGame from './PrisonersDilemmaGame';
+import { CssBaseline, Container } from '@material-ui/core';
 
 function App() {
   return (
-    <div className="App">
+    <>
+    <CssBaseline />
+    <Container maxWidth="md">
       <PrisonersDilemmaGame />
-    </div>
+    </Container>
+  </>
   );
 }
 
