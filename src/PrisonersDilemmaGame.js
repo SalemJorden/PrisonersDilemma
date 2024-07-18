@@ -3,6 +3,7 @@ import { Button, Select, MenuItem, Typography, Paper, Grid, Box, Card, CardConte
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { blue, red, grey } from '@material-ui/core/colors';
 import * as d3 from 'd3';
+import vonNeumannImage from './assets/JonVonNeumann.avif'
 
 const strategies = {
   titForTat: (history) => history.length === 0 ? 'C' : history[history.length - 1].human,
@@ -70,6 +71,18 @@ const useStyles = makeStyles((theme) => ({
   roundText: {
     marginTop: theme.spacing(2),
     fontWeight: 'bold',
+  },
+  gameTheoryInfo: {
+    marginTop: theme.spacing(4),
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+  },
+  vonNeumannImage: {
+    maxWidth: '100%',
+    height: 'auto',
+    borderRadius: theme.shape.borderRadius,
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -152,9 +165,8 @@ function PrisonersDilemmaGame() {
       .attr("stroke-width", 2)
       .attr("d", line);
   };
-  
+
   return (
-    <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -210,9 +222,28 @@ function PrisonersDilemmaGame() {
         <Typography variant="h6" align="center" className={classes.roundText}>
           Round: {gameState.round}
         </Typography>
-      </div>
-    </ThemeProvider>
+    <Paper className={classes.gameTheoryInfo}>
+      <Typography variant="h5" gutterBottom>The Origins of the Prisoner's Dilemma</Typography>
+      <img src={vonNeumannImage} alt="Stylized portrait of John von Neumann" className={classes.vonNeumannImage} />
+      <Typography variant="h6">John von Neumann</Typography>
+      <Typography paragraph>
+        John von Neumann (1903-1957) was a Hungarian-American mathematician and polymath. 
+        He made major contributions to numerous fields, including mathematics, physics, 
+        computer science, and economics.
+      </Typography>
+      <Typography paragraph>
+        Von Neumann was instrumental in the development of game theory, a mathematical 
+        framework for analyzing strategic decision-making. He is informally known as the Godfather of Game Theory and his work laid the foundation for the Prisoner's Dilemma.
+      </Typography>
+      <Typography variant="h6">The Prisoner's Dilemma</Typography>
+      <Typography paragraph>
+        Formulated at the RAND Corporation in 1950, the Prisoner's Dilemma is a thought experiment that demonstrates why two completely rational individuals might 
+        not cooperate, even if it appears that it's in their best interests to do so. It has 
+        profound implications for various fields, including economics, politics, and biology.
+      </Typography>
+    </Paper>
+    </div>
   );
-}
+};
 
 export default PrisonersDilemmaGame;
